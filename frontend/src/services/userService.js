@@ -1,4 +1,15 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const fetchUsers = () => axios.get('/api/users');
-export const createUser = (data) => axios.post('/api/users', data);
+const API = axios.create({
+  baseURL: 'http://localhost:5000/api', // Change if needed
+});
+
+API.interceptors.request.use((req) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    req.headers.Authorization = `Bearer ${token}`;
+  }
+  return req;
+});
+
+export default API;
