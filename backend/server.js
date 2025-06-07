@@ -1,11 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
 import cors from 'cors';
 
 import { connectDB } from './config/db.js';
-import userRoutes from './routes/userRoutes.js';
-import bondRoutes from './routes/bondRoutes.js';
+import auth from './routes/auth.js';
+import admin from './routes/admin.js';
 
 dotenv.config();
 connectDB();
@@ -15,8 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 // routes
-app.use('/api/users', userRoutes);
-app.use('/api/bonds', bondRoutes);
+app.use('/api/auth', auth);
+app.use('/api/admin', admin);
 
 const PORT = process.env.PORT || 5000;
 
