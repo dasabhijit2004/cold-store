@@ -1,25 +1,25 @@
+import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import app from './app.js';
+import cors from 'cors';
+
+import { connectDB } from './config/db.js';
+import userRoutes from './routes/userRoutes.js';
+import bondRoutes from './routes/bondRoutes.js';
 
 dotenv.config();
+connectDB();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// routes
+app.use('/api/users', userRoutes);
+app.use('/api/bonds', bondRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-// Connect to DB and start server
-// mongoose
-//     .connect(process.env.MONGO_URI)
-//     .then(() => {
-//         console.log('✅ Connected to MongoDB');
-//         app.listen(PORT, () => {
-//             console.log(`🚀 Server running on http://localhost:${PORT}`);
-//         });
-//     })
-//     .catch(err => {
-//         console.error('❌ DB connection error:', err);
-//     });
-
-
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+app.listen(PORT, () =>
+    console.log(`Server running on port ${PORT}`)
+)
