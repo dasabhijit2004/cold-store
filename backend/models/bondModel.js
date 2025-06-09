@@ -1,9 +1,24 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const bondSchema = new mongoose.Schema({
-    name: String,
-    owner: String,
-    price: Number
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  totalBought: {
+    type: Number,
+    required: true,
+  },
+  totalSold: {
+    type: Number,
+    required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-export default mongoose.model('Bond', bondSchema);
+const Bond = mongoose.model('Bond', bondSchema);
+export default Bond;
