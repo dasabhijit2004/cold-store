@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import API from '../services/userService';
 
 export default function Signup() {
-  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'client' });
+  const [form, setForm] = useState({ name: '', email: '', password: '' });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -28,10 +28,10 @@ export default function Signup() {
         <input name="name" placeholder="Name" onChange={handleChange} required className="w-full mb-4 p-2 border rounded" />
         <input name="email" type="email" placeholder="Email" onChange={handleChange} required className="w-full mb-4 p-2 border rounded" />
         <input name="password" type="password" placeholder="Password" onChange={handleChange} required className="w-full mb-4 p-2 border rounded" />
-        <select name="role" onChange={handleChange} className="w-full mb-4 p-2 border rounded">
+        {/* <select name="role" onChange={handleChange} className="w-full mb-4 p-2 border rounded">
           <option value="client">Client</option>
           <option value="admin">Admin</option>
-        </select>
+        </select> */}
         <button className="bg-green-600 text-white w-full py-2 rounded hover:bg-green-700 transition">
           Sign Up
         </button>
