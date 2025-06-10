@@ -5,12 +5,14 @@ import Home from './pages/Home';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminDashboardBonds from './pages/BondDashboard';
 import ClientBondHistory from './pages/ClientBondHistory';
+import Navbar from './components/Navbar';
 
 function App() {
   const token = localStorage.getItem('token');
 
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Navigate to={token ? "/home" : "/login"} />} />
         <Route path="/login" element={<Login />} />
